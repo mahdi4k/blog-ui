@@ -10,6 +10,7 @@ import {
 } from '@mantine/core';
 import { theme } from '@/theme';
 import Header from '@/components/header/Header';
+import NextTopLoader from 'nextjs-toploader';
 
 export const metadata = {
   title: 'Blog UI',
@@ -25,6 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="shortcut icon" href="/favicon.svg" />
       </head>
       <body>
+        <NextTopLoader crawl showSpinner={false} height={3} color="#33BE81" />
         <MantineProvider theme={theme} defaultColorScheme="light">
           <AppShell header={{ height: 60 }} padding="md">
             <AppShellHeader >
