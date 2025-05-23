@@ -12,6 +12,7 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import { SkeletonCard } from './SkeletonCard';
 import ImageWithFallback from '@/components/ui/ImageWithFallback';
+import Link from 'next/link';
 
 interface Post {
     id: number;
@@ -59,20 +60,24 @@ export default function ArticleList({ posts }: { posts: Post[] }) {
                             <Grid>
                                 {paginatedPosts.map((post) => (
                                     <Grid.Col key={post.id} span={{ base: 12, xs: 6, md: 4 }}>
-                                        <Card shadow="sm" padding="lg" radius="md" withBorder>
-                                            <Card.Section>
-                                                <ImageWithFallback
-                                                    src={`https://picsum.photos/seed/${post.id}/500/300`}
-                                                    alt={post.title}
-                                                />
-                                            </Card.Section>
-                                            <Text lineClamp={2} h={50} fw={500} mt="md" title={post.title}>
-                                                {post.title}
-                                            </Text>
-                                            <Text size="sm" c="dimmed" mt="xs" lineClamp={3}>
-                                                {post.body}
-                                            </Text>
-                                        </Card>
+                                        <Link href={`/article/${post.id}`} style={{ textDecoration: 'none' }}>
+
+                                            <Card shadow="sm" padding="lg" radius="md" withBorder>
+                                                <Card.Section>
+                                                    <ImageWithFallback aspectRatio='3 / 2'
+                                                    sizes='max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                                                        src={`https://picsum.photos/seed/${post.id}/500/300`}
+                                                        alt={post.title}
+                                                    />
+                                                </Card.Section>
+                                                <Text lineClamp={2} h={50} fw={500} mt="md" title={post.title}>
+                                                    {post.title}
+                                                </Text>
+                                                <Text size="sm" c="dimmed" mt="xs" lineClamp={3}>
+                                                    {post.body}
+                                                </Text>
+                                            </Card>
+                                        </Link>
                                     </Grid.Col>
                                 ))}
                             </Grid>
