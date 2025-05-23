@@ -12,6 +12,7 @@ import {
 import { IconSun, IconMoon } from '@tabler/icons-react';
 import cx from 'clsx';
 import classes from './ActionToggle.module.css';
+import Link from 'next/link';
 
 export default function Header() {
     const { setColorScheme } = useMantineColorScheme();
@@ -23,11 +24,13 @@ export default function Header() {
 
     return (
         <Container h="100%" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <Title order={3}>My Blog UI</Title>
+            <Link style={{ textDecoration: 'none' }} href={'/'}>
+                <Title c={'black'} order={3}>My Blog UI</Title>
+            </Link>
             <Group>
                 <ActionIcon
                     onClick={toggleTheme}
-                    variant="default"
+                    variant="transparent"
                     size="lg"
                     aria-label="Toggle theme"
                 >
