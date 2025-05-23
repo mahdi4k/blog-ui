@@ -85,7 +85,10 @@ export default function ArticleList({ posts }: { posts: Post[] }) {
                     <Pagination
                         total={totalPages}
                         value={page}
-                        onChange={setPage}
+                        onChange={(value) => {
+                            setPage(value);
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }}
                         size="md"
                         mt="xl"
                         style={{ alignSelf: 'center' }}
