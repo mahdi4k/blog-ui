@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import {
     Card,
-    Image,
     Text,
     Grid,
     Container,
@@ -12,6 +11,7 @@ import {
 } from '@mantine/core';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SkeletonCard } from './SkeletonCard';
+import ImageWithFallback from '@/components/ui/ImageWithFallback';
 
 interface Post {
     id: number;
@@ -58,13 +58,12 @@ export default function ArticleList({ posts }: { posts: Post[] }) {
                         >
                             <Grid>
                                 {paginatedPosts.map((post) => (
-                                    <Grid.Col key={post.id} span={{ base: 12, sm: 6, md: 4 }}>
+                                    <Grid.Col key={post.id} span={{ base: 12, xs: 6, md: 4 }}>
                                         <Card shadow="sm" padding="lg" radius="md" withBorder>
                                             <Card.Section>
-                                                <Image
+                                                <ImageWithFallback
                                                     src={`https://picsum.photos/seed/${post.id}/500/300`}
-                                                    height={160}
-                                                    alt="Article image"
+                                                    alt={post.title}
                                                 />
                                             </Card.Section>
                                             <Text lineClamp={2} h={50} fw={500} mt="md" title={post.title}>
