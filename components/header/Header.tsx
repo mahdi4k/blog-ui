@@ -25,7 +25,7 @@ export default function Header() {
     return (
         <Container h="100%" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <Link style={{ textDecoration: 'none' }} href={'/'}>
-                <Title c={'black'} order={3}>My Blog UI</Title>
+                <Title order={3}>My Blog UI</Title>
             </Link>
             <Group>
                 <ActionIcon
