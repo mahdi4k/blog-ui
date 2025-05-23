@@ -21,6 +21,7 @@ interface Post {
 }
 
 const POSTS_PER_PAGE = 10;
+const MotionDiv = motion.div;
 
 export default function ArticleList({ posts }: { posts: Post[] }) {
     const [page, setPage] = useState(1);
@@ -61,22 +62,27 @@ export default function ArticleList({ posts }: { posts: Post[] }) {
                                 {paginatedPosts.map((post) => (
                                     <Grid.Col key={post.id} span={{ base: 12, xs: 6, md: 4 }}>
                                         <Link href={`/article/${post.id}`} style={{ textDecoration: 'none' }}>
+                                            <MotionDiv
+                                                whileHover={{ scale: 1.01 }}
+                                                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                                            >
+                                                <Card shadow="sm" padding="lg" radius="md" withBorder>
+                                                    <Card.Section>
+                                                        <ImageWithFallback aspectRatio='3 / 2'
+                                                            sizes='max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                                                            src={`https://picsum.photos/seed/${post.id}/500/300`}
+                                                            alt={post.title}
+                                                        />
+                                                    </Card.Section>
+                                                    <Text lineClamp={2} h={50} fw={500} mt="md" title={post.title}>
+                                                        {post.title}
+                                                    </Text>
+                                                    <Text size="sm" c="dimmed" mt="xs" lineClamp={3}>
+                                                        {post.body}
+                                                    </Text>
+                                                </Card>
+                                            </MotionDiv>
 
-                                            <Card shadow="sm" padding="lg" radius="md" withBorder>
-                                                <Card.Section>
-                                                    <ImageWithFallback aspectRatio='3 / 2'
-                                                    sizes='max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-                                                        src={`https://picsum.photos/seed/${post.id}/500/300`}
-                                                        alt={post.title}
-                                                    />
-                                                </Card.Section>
-                                                <Text lineClamp={2} h={50} fw={500} mt="md" title={post.title}>
-                                                    {post.title}
-                                                </Text>
-                                                <Text size="sm" c="dimmed" mt="xs" lineClamp={3}>
-                                                    {post.body}
-                                                </Text>
-                                            </Card>
                                         </Link>
                                     </Grid.Col>
                                 ))}
@@ -99,6 +105,6 @@ export default function ArticleList({ posts }: { posts: Post[] }) {
                     />
                 )}
             </Stack>
-        </Container>
+        </Container >
     );
 }
