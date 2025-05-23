@@ -1,30 +1,38 @@
-import "@mantine/core/styles.css";
-import React from "react";
+// app/layout.tsx
+import '@mantine/core/styles.css';
 import {
   MantineProvider,
   ColorSchemeScript,
   mantineHtmlProps,
-} from "@mantine/core";
-import { theme } from "../theme";
+  AppShell,
+  AppShellHeader,
+  AppShellMain,
+} from '@mantine/core';
+import { theme } from '@/theme';
+import Header from '@/components/header/Header';
 
 export const metadata = {
-  title: "Mantine Next.js template",
-  description: "I am using Mantine with Next.js!",
+  title: 'Blog UI',
+  description: 'Dark/light mode ready blog layout',
 };
 
-export default function RootLayout({ children }: { children: any }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" {...mantineHtmlProps}>
       <head>
-        <ColorSchemeScript />
+        <ColorSchemeScript defaultColorScheme="light" />
+        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         <link rel="shortcut icon" href="/favicon.svg" />
-        <meta
-          name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
-        />
       </head>
       <body>
-        <MantineProvider theme={theme}>{children}</MantineProvider>
+        <MantineProvider theme={theme} defaultColorScheme="light">
+          <AppShell header={{ height: 60 }} padding="md">
+            <AppShellHeader >
+              <Header />
+            </AppShellHeader>
+            <AppShellMain>{children}</AppShellMain>
+          </AppShell>
+        </MantineProvider>
       </body>
     </html>
   );
